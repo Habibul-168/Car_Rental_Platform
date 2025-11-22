@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563EB;
+  --color-secondary: #1E3A8A;
+  --color-accent: #60A5FA;
+  --color-dark: #0F172A;
+  --color-dark-secondary: #1E293B;
+  --color-dark-accent: #334155;
+  --color-blue-light: #DBEAFE;
+  --color-blue-dark: #1E40AF;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-dark text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-secondary text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-secondary/30;
+  }
+  
+  .btn-secondary {
+    @apply bg-dark-accent hover:bg-dark-secondary text-gray-300 hover:text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 border border-accent/30 hover:border-accent;
+  }
+}
