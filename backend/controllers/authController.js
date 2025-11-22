@@ -5,6 +5,15 @@ export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body
     
+    // Validation
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'All fields are required' })
+    }
+    
+    if (password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters' })
+    }
+    
     const existingUser = await User.findOne({ email })
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' })
@@ -16,10 +25,11 @@ export const register = async (req, res) => {
     
     res.status(201).json({ 
       message: 'User registered successfully',
-      user: { id: user._id, name: user.name, email: user.email }
+      user: { _id: user._id, id: user._id, name: user.name, email: user.email }
     })
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    console.error('Registration error:', error)
+    res.status(500).json({ message: 'Registration failed. Please try again.' })
   }
 }
 
@@ -39,7 +49,7 @@ export const login = async (req, res) => {
     
     res.json({ 
       message: 'Login successful',
-      user: { id: user._id, name: user.name, email: user.email }
+      user: { _id: user._id, id: user._id, name: user.name, email: user.email }
     })
   } catch (error) {
     res.status(500).json({ message: error.message })

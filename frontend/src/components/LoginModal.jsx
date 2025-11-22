@@ -44,7 +44,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     try {
       const response = isLogin 
         ? await authAPI.login({ email: formData.email, password: formData.password })
-        : await authAPI.register(formData)
+        : await authAPI.register({ name: formData.name, email: formData.email, password: formData.password })
       
       if (response.data.user) {
         login(response.data.user)
