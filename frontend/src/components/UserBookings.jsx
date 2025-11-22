@@ -91,7 +91,7 @@ const UserBookings = ({ isOpen, onClose }) => {
                       {booking.needDriver && (
                         <p className="text-accent">Driver: {booking.driverHours} hours</p>
                       )}
-                      <p className="text-primary font-semibold">Total: ${booking.totalCost}</p>
+                      <p className="text-primary font-semibold">Total: INR{booking.totalCost}</p>
                     </div>
                     <div className="text-right">
                       <div className="text-primary font-bold text-lg mb-2">
